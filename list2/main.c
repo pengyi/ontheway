@@ -71,6 +71,8 @@ int main() {
     print_list(list);
     list_reverse_r(list);
     print_list(list);
+    list_reverse(list);
+    print_list(list);
 
     return 0;
 }
