@@ -12,6 +12,7 @@ yp_stack* stack_push(yp_stack* stack, void* p);
 void* stack_pop(yp_stack* stack);
 int stack_is_empty(yp_stack* stack);
 void stack_destroy(yp_stack* stack);
+void* stack_top(yp_stack* stack);
 
 
 #endif

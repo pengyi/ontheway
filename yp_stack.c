@@ -48,3 +48,10 @@ void stack_destroy(yp_stack* stack) {
     }
     list_destroy(stack->list);
 }
+
+void* stack_top(yp_stack* stack) {
+    if (stack == NULL) {
+        return NULL;
+    }
+    return list_ith_node(stack->list, stack->list->len);
+}
