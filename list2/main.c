@@ -69,6 +69,8 @@ int main() {
     pval = (int*)list_shift(list);
     print_value(pval);
     print_list(list);
+    list_reverse_r(list);
+    print_list(list);
 
     return 0;
 }

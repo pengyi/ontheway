@@ -129,6 +129,29 @@ yp_list_node* list_ith_node(yp_list* list, int i) {
     return p;
 }
 
+static yp_list_node* _list_reverse_r(yp_list_node* head) {
+    yp_list_node* p = NULL, *q = NULL;
+    if (head == NULL || head->next == NULL) {
+        return head;
+    }
+    p = head->next;
+    q = _list_reverse_r(p);
+    p->next = head;
+    head->next = NULL;
+    return q;
+}
+
+yp_list* list_reverse_r(yp_list* list) {
+    yp_list_node* p = NULL;
+    if (list == NULL) {
+        return NULL;
+    }
+    p = _list_reverse_r(list->head);
+    list->tail = list->head;
+    list->head = p;
+    return list;
+}
+
 
 
 
