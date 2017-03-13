@@ -13,9 +13,11 @@ typedef struct _yp_list {
     void (*free_value)(void* p);
     void* (*copy_value)(void* p);
     int (*compare_value)(void* p1, void* p2);
+    void(*visit)(yp_list_node* node);
 } yp_list;
 
-yp_list* list_create(void* p, int len);
-void list_traverse(yp_list* list, void(*visit)(yp_list_node* node));
+yp_list* list_create();
+yp_list* list_push(yp_list* list, void* p);
+void list_traverse(yp_list* list);
 
 #endif
