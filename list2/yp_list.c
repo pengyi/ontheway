@@ -154,7 +154,7 @@ yp_list* list_reverse_r(yp_list* list) {
 
 yp_list* list_reverse(yp_list* list) {
     yp_list_node* pre = NULL, *cur = NULL, *post = NULL, *tmp = NULL;
-    if (list == NULL || list->head == NULL || list->head->next == NULL) {
+    if (list == NULL || list->head == NULL) {
         return list;
     }
     cur = list->head;
