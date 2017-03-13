@@ -1,5 +1,5 @@
-#ifndef _YP_STACK_H
-#define _YP_STACK_H
+#ifndef YP_STACK_H
+#define YP_STACK_H
 
 #include "yp_list.h"
 
