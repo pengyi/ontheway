@@ -13,22 +13,11 @@ void print_node_value(yp_list_node* node) {
     }
 }
 
-void print_node_pointer(yp_list_node* node) {
-    if (node == NULL) {
-        return;
-    }
-    if (node->next == NULL) {
-        printf("%p", node);
-    } else {
-        printf("%p->", node);
-    }
-}
 
 void print_list(yp_list* list) {
-    list->visit = print_node_value;
     list_traverse(list);
     printf("\n");
-    list->visit = print_node_pointer;
+    list->visit = print_node_value;
     list_traverse(list);
     printf("\n");
 }

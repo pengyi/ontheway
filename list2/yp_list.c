@@ -4,6 +4,17 @@
 #include<string.h>
 
 
+static void print_node_pointer(yp_list_node* node) {
+    if (node == NULL) {
+        return;
+    }
+    if (node->next == NULL) {
+        printf("%p", node);
+    } else {
+        printf("%p->", node);
+    }
+}
+
 yp_list* list_create() {
     yp_list_node* node = NULL;
     yp_list* list = (yp_list*)malloc(sizeof(yp_list));
@@ -15,7 +26,7 @@ yp_list* list_create() {
     list->copy_value    = NULL;
     list->free_value    = NULL;
     list->compare_value = NULL;
-    list->visit         = NULL;
+    list->visit         = print_node_pointer;
     return list;
 }
 
@@ -39,6 +50,9 @@ yp_list* list_push(yp_list* list, void* p) {
     list->len++;
     return list;
 }
+
+
+
 
 void list_traverse(yp_list* list) {
     yp_list_node* node = NULL;
