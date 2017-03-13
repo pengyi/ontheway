@@ -18,6 +18,7 @@ typedef struct _yp_list {
 
 yp_list* list_create();
 yp_list* list_push(yp_list* list, void* p);
+void* list_pop(yp_list* list);
 void list_traverse(yp_list* list);
 
 #endif

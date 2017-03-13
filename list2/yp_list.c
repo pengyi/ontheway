@@ -51,6 +51,31 @@ yp_list* list_push(yp_list* list, void* p) {
     return list;
 }
 
+void* list_pop(yp_list* list) {
+    void* p = NULL;
+    yp_list_node* node = NULL, *q = NULL;
+    if (list == NULL || list->tail == NULL) {
+        return NULL;
+    }
+    q = list->tail;
+    if (list->head == list->tail) {
+        list->head = list->tail = NULL;
+    } else {
+        node = list->head;
+        while (node->next != list->tail) {
+            node = node->next;
+        }
+        list->tail = node;
+        node->next = NULL;
+    }
+    list->len--;
+    p = q->value;
+    free(q);
+    q->next  = NULL;
+    q->value = NULL;
+    return p;
+}
+
 
 
 
