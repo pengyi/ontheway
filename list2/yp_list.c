@@ -71,8 +71,7 @@ void* list_pop(yp_list* list) {
     list->len--;
     p = q->value;
     free(q);
-    q->next  = NULL;
-    q->value = NULL;
+    q = NULL;
     return p;
 }
 
