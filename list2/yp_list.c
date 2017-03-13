@@ -170,8 +170,28 @@ yp_list* list_reverse(yp_list* list) {
     return list;
 }
 
+yp_list* list_empty(yp_list* list) {
+    yp_list_node* p = NULL, *q = NULL;
+    if (list == NULL || list->head == NULL) {
+        return NULL;
+    }
+    p = list->head;
+    while(p) {
+        q = p;
+        p = p->next;
+        free(q);
+        q = NULL;
+    }
+    list->head = list->tail = NULL;
+    list->len = 0;
+    return list;
+}
 
-
+void list_destroy(yp_list* list) {
+    list_empty(list);
+    free(list);
+    list = NULL;
+}
 
 void list_traverse(yp_list* list) {
     yp_list_node* node = NULL;

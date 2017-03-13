@@ -73,6 +73,9 @@ int main() {
     print_list(list);
     list_reverse(list);
     print_list(list);
+    list_empty(list);
+    list_destroy(list);
+    printf("end\n");
 
     return 0;
 }

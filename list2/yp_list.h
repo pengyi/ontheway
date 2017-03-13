@@ -25,5 +25,7 @@ yp_list_node* list_ith_node(yp_list* list, int i);
 void list_traverse(yp_list* list);
 yp_list* list_reverse_r(yp_list* list);
 yp_list* list_reverse(yp_list* list);
+yp_list* list_empty(yp_list* list);
+void list_destroy(yp_list* list);
 
 #endif
