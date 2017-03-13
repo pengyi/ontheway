@@ -75,6 +75,60 @@ void* list_pop(yp_list* list) {
     return p;
 }
 
+void* list_shift(yp_list* list) {
+    yp_list_node* p = NULL;
+    void* value = NULL;
+    if (list == NULL || list->head == NULL) {
+        return NULL;
+    }
+    p = list->head;
+    if (list->head == list->tail) {
+        list->head = list->tail = NULL;
+    } else {
+        list->head = list->head->next;
+    }
+    value = p->value;
+    list->len--;
+    free(p);
+    p = NULL;
+    return value;
+}
+
+yp_list* list_unshift(yp_list* list, void* p) {
+    yp_list_node* node = NULL;
+    if (list == NULL || p == NULL) {
+        return NULL;
+    }
+    node = (yp_list_node*)malloc(sizeof(yp_list_node));
+    if (!node) {
+        return NULL;
+    }
+    node->value = p;
+    node->next = NULL;
+    if (list->head == NULL) {
+        list->head = list->tail = node;
+    } else {
+        node->next = list->head;
+        list->head = node;
+    }
+    list->len++;
+    return list;
+}
+
+yp_list_node* list_ith_node(yp_list* list, int i) {
+    yp_list_node* p = NULL;
+    int count = 1;
+    if (list == NULL || i < 1 || i > list->len) {
+        return NULL;
+    }
+    p = list->head;
+    while (p && count < i) {
+        p = p->next;
+        count++;
+    }
+    return p;
+}
+
 
 
 

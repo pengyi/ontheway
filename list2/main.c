@@ -38,10 +38,22 @@ void print_value(int* p) {
     printf("\n");
 }
 
+void print_node(yp_list_node* node) {
+    int* p = NULL;
+    if (node == NULL) {
+        printf("empty node");
+    } else {
+        p = (int*)node->value;
+        printf("node value is:%d", *p);
+    }
+    printf("\n");
+}
+
 
 int main() {
     int* pval = NULL;
-    int values[] = {1, 2, 3, 4, 5, 6, 7};
+    yp_list_node* node = NULL;
+    int values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     yp_list* list = list_create();
     for (int i = 0; i < 7; ++i) {
         list_push(list, &values[i]);
@@ -50,5 +62,13 @@ int main() {
     pval = (int*)list_pop(list);
     print_value(pval);
     print_list(list);
+    node = list_ith_node(list, list->len);
+    print_node(node);
+    list_unshift(list, &values[8]);
+    print_list(list);
+    pval = (int*)list_shift(list);
+    print_value(pval);
+    print_list(list);
+
     return 0;
 }
