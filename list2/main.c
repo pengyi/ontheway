@@ -24,6 +24,15 @@ void print_node_pointer(yp_list_node* node) {
     }
 }
 
+void print_list(yp_list* list) {
+    list->visit = print_node_value;
+    list_traverse(list);
+    printf("\n");
+    list->visit = print_node_pointer;
+    list_traverse(list);
+    printf("\n");
+}
+
 
 int main() {
     int values[] = {1, 2, 3, 4, 5, 6, 7};
@@ -31,11 +40,6 @@ int main() {
     for (int i = 0; i < 7; ++i) {
         list_push(list, &values[i]);
     }
-    list->visit = print_node_value;
-    list_traverse(list);
-    printf("\n");
-    list->visit = print_node_pointer;
-    list_traverse(list);
-    printf("\n");
+    print_list(list);
     return 0;
 }
