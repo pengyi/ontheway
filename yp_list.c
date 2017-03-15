@@ -16,7 +16,6 @@ static void print_node_pointer(yp_list_node* node) {
 }
 
 yp_list* list_create() {
-    yp_list_node* node = NULL;
     yp_list* list = (yp_list*)malloc(sizeof(yp_list));
     if (!list) {
         return NULL;
