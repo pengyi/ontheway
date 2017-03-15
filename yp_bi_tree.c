@@ -97,3 +97,21 @@ void bi_tree_in_order_r(yp_bi_tree* tree) {
     }
     _bi_tree_in_order_r(tree, tree->root);
 }
+
+static void _bi_tree_post_order_r(yp_bi_tree* tree, yp_bi_tree_node* root) {
+    if (root == NULL) {
+        return;
+    }
+    _bi_tree_post_order_r(tree, root->lchild);
+    _bi_tree_post_order_r(tree, root->rchild);
+    if (tree->visit) {
+        tree->visit(root);
+    }
+}
+
+void bi_tree_post_order_r(yp_bi_tree* tree) {
+    if (tree == NULL) {
+        return;
+    }
+    _bi_tree_post_order_r(tree, tree->root);
+}

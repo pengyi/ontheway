@@ -16,5 +16,6 @@ typedef struct _yp_bi_tree {
 yp_bi_tree* bi_tree_create(void** p, int len);
 void bi_tree_pre_order_r(yp_bi_tree* tree);
 void bi_tree_in_order_r(yp_bi_tree* tree);
+void bi_tree_post_order_r(yp_bi_tree* tree);
 
 #endif

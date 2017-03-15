@@ -16,5 +16,8 @@ int main() {
     bi_tree_pre_order_r(tree);
     printf("\n");
     bi_tree_in_order_r(tree);
+    printf("\n");
+    bi_tree_post_order_r(tree);
+    printf("\n");
     return 0;
 }
