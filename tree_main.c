@@ -15,6 +15,10 @@ int main() {
     tree->visit = print_bi_tree_node;
     bi_tree_pre_order_r(tree);
     printf("\n");
+    bi_tree_pre_order(tree);
+    printf("\n");
+    bi_tree_pre_order2(tree);
+    printf("\n");
     bi_tree_in_order_r(tree);
     printf("\n");
     bi_tree_in_order(tree);
@@ -22,6 +26,8 @@ int main() {
     bi_tree_in_order2(tree);
     printf("\n");
     bi_tree_post_order_r(tree);
+    printf("\n");
+    bi_tree_post_order(tree);
     printf("\n");
     bi_tree_level_visit(tree);
     printf("\n");

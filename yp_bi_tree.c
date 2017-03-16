@@ -80,6 +80,62 @@ void bi_tree_pre_order_r(yp_bi_tree* tree) {
     _bi_tree_pre_order_r(tree, tree->root);
 }
 
+void bi_tree_pre_order(yp_bi_tree* tree) {
+    yp_bi_tree_node* node = NULL;
+    yp_list* list = NULL;
+    if (tree == NULL) {
+        return;
+    }
+    list = list_create();
+    if (list == NULL) {
+        return;
+    }
+    list_push(list, tree->root);
+    while(list->len > 0) {
+        node = list_get_last(list);
+        while(node) {
+            if (tree->visit) {
+                tree->visit(node);
+            }
+            node = node->lchild;
+            list_push(list, node);
+        }
+        list_pop(list);
+        if (list->len > 0) {
+            node = list_pop(list);
+            list_push(list, node->rchild);
+        }
+    }
+    list_destroy(list);
+
+}
+
+void bi_tree_pre_order2(yp_bi_tree* tree) {
+    yp_bi_tree_node* node = NULL;
+    yp_list* list = NULL;
+    if (tree == NULL) {
+        return;
+    }
+    list = list_create();
+    if (list == NULL) {
+        return;
+    }
+    node = tree->root;
+    while(node || list->len > 0) {
+        if (node) {
+            if (tree->visit) {
+                tree->visit(node);
+            }
+            list_push(list, node);
+            node = node->lchild;
+        } else {
+            node = list_pop(list);
+            node = node->rchild;
+        }
+    }
+    list_destroy(list);
+}
+
 static void _bi_tree_in_order_r(yp_bi_tree* tree, yp_bi_tree_node* root) {
     if (root == NULL) {
         return;
@@ -114,6 +170,40 @@ void bi_tree_post_order_r(yp_bi_tree* tree) {
         return;
     }
     _bi_tree_post_order_r(tree, tree->root);
+}
+
+void bi_tree_post_order(yp_bi_tree* tree) {
+    yp_bi_tree_node* node = NULL, * pre = NULL;
+    yp_list* list = NULL;
+    if (tree == NULL) {
+        return;
+    }
+    list = list_create();
+    if (list == NULL) {
+        return;
+    }
+    list_push(list, tree->root);
+    while(list->len > 0) {
+        node = list_get_last(list);
+        while(node) {
+            node = node->lchild;
+            list_push(list, node);
+        }
+        list_pop(list);
+        if (list->len > 0) {
+            node = list_get_last(list);
+            if (node->rchild == NULL || (pre && node->rchild == pre)) {
+                if (tree->visit) {
+                    tree->visit(node);
+                } 
+                pre = node;
+                list_pop(list);
+                list_push(list, NULL);
+            } else {
+                list_push(list, node->rchild);
+            }
+        }
+    }
 }
 
 void bi_tree_level_visit(yp_bi_tree* tree) {
