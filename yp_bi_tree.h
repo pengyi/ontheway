@@ -18,5 +18,6 @@ void bi_tree_pre_order_r(yp_bi_tree* tree);
 void bi_tree_in_order_r(yp_bi_tree* tree);
 void bi_tree_post_order_r(yp_bi_tree* tree);
 void bi_tree_level_visit(yp_bi_tree* tree);
+void bi_tree_in_order(yp_bi_tree* tree);
 
 #endif

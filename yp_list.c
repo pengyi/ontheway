@@ -128,6 +128,10 @@ yp_list_node* list_ith_node(yp_list* list, int i) {
     return p;
 }
 
+void* list_get_last(yp_list* list) {
+    return list_ith_node(list, list->len);
+}
+
 static yp_list_node* _list_reverse_r(yp_list_node* head) {
     yp_list_node* p = NULL, *q = NULL;
     if (head == NULL || head->next == NULL) {

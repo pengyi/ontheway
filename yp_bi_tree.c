@@ -138,7 +138,38 @@ void bi_tree_level_visit(yp_bi_tree* tree) {
         if (node->rchild) {
             list_push(list, node->rchild);
         }
+    }  
+    list_destroy(list);  
+}
+
+void bi_tree_in_order(yp_bi_tree* tree) {
+    yp_bi_tree_node* node = NULL;
+    yp_list* list = NULL;
+    if (tree == NULL) {
+        return;
     }
-    
+    list = list_create();
+    if (list == NULL) {
+        return;
+    }
+    node = tree->root;
+    while(node || list->len > 0) {
+        if (node) {
+            list_push(list, node);
+            node = node->lchild;
+        } else {
+            node = list_pop(list);
+            if (tree->visit) {
+                tree->visit(node);
+            }
+            node = node->rchild;
+        }
+    }
+    list_destroy(list);
+}
+
+void bi_tree_in_order2(yp_bi_tree* tree) {
+    yp_bi_tree_node* node = NULL;
+    yp_list* list = NULL;
     
 }
