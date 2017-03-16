@@ -115,3 +115,30 @@ void bi_tree_post_order_r(yp_bi_tree* tree) {
     }
     _bi_tree_post_order_r(tree, tree->root);
 }
+
+void bi_tree_level_visit(yp_bi_tree* tree) {
+    yp_list* list = NULL;
+    yp_bi_tree_node* node;
+    if (tree == NULL || tree->root == NULL) {
+        return;
+    }
+    list = list_create();
+    if (list == NULL){
+        return;
+    }
+    list_push(list, (void*)tree->root);
+    while(list->len > 0) {
+        node = list_shift(list);
+        if (tree->visit) {
+            tree->visit(node);
+        }
+        if (node->lchild) {
+            list_push(list, node->lchild);
+        }
+        if (node->rchild) {
+            list_push(list, node->rchild);
+        }
+    }
+    
+    
+}

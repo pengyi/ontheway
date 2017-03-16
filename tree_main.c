@@ -19,5 +19,7 @@ int main() {
     printf("\n");
     bi_tree_post_order_r(tree);
     printf("\n");
+    bi_tree_level_visit(tree);
+    printf("\n");
     return 0;
 }
