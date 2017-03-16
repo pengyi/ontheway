@@ -31,7 +31,7 @@ yp_list* list_create() {
 
 yp_list* list_push(yp_list* list, void* p) {
     yp_list_node* node = NULL;
-    if (list == NULL || p == NULL) {
+    if (list == NULL) {
         return list;
     }
     node = (yp_list_node*)malloc(sizeof(yp_list_node));
@@ -129,7 +129,9 @@ yp_list_node* list_ith_node(yp_list* list, int i) {
 }
 
 void* list_get_last(yp_list* list) {
-    return list_ith_node(list, list->len);
+    yp_list_node* node = NULL;
+    node = list_ith_node(list, list->len);
+    return node->value;
 }
 
 static yp_list_node* _list_reverse_r(yp_list_node* head) {

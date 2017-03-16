@@ -171,5 +171,29 @@ void bi_tree_in_order(yp_bi_tree* tree) {
 void bi_tree_in_order2(yp_bi_tree* tree) {
     yp_bi_tree_node* node = NULL;
     yp_list* list = NULL;
-    
+    if (tree == NULL) {
+        return;
+    }
+    list = list_create();
+    if (list == NULL) {
+        return;
+    }
+    list_push(list, tree->root);
+    while(list->len > 0) {
+        node = (yp_bi_tree_node*)list_get_last(list);
+        while(node) {
+            node = node->lchild;
+            list_push(list, node);
+        }
+        list_pop(list);//NULL
+        if (list->len > 0) {
+            node = (yp_bi_tree_node*)list_pop(list);
+            if (tree->visit) {
+                tree->visit(node);
+            }
+            list_push(list, node->rchild);
+        }
+    }
+    list_destroy(list);
+
 }
