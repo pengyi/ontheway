@@ -206,6 +206,40 @@ void bi_tree_post_order(yp_bi_tree* tree) {
     }
 }
 
+void bi_tree_post_order2(yp_bi_tree* tree) {
+    yp_bi_tree_node* node = NULL, * pre = NULL;
+    yp_list* list = NULL;
+    if (tree == NULL) {
+        return;
+    }
+    list = list_create();
+    if (list == NULL) {
+        return;
+    }
+    node = tree->root;
+    while(node || list->len) {
+        if (node) {
+            list_push(list, node);
+            node = node->lchild;
+        } else {
+            node = list_get_last(list);
+            if (node->rchild == NULL || node->rchild == pre) {
+                if (tree->visit) {
+                    tree->visit(node);
+                }
+                pre = node;
+                list_pop(list);
+                node = NULL;
+            } else {
+                node = node->rchild;
+            }
+        }
+
+    }
+    list_destroy(list);
+
+}
+
 void bi_tree_level_visit(yp_bi_tree* tree) {
     yp_list* list = NULL;
     yp_bi_tree_node* node;
