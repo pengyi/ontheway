@@ -18,5 +18,6 @@ typedef struct _yp_graph {
     int arcnum;
     int bucketsize;
     int kind;
+    void (*print_v_node)(yp_v_node* node);
 } yp_graph;
 #endif
